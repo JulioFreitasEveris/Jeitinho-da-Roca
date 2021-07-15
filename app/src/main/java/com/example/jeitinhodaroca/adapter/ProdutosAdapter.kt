@@ -8,7 +8,16 @@ import com.example.jeitinhodaroca.R
 import com.example.jeitinhodaroca.model.Produto
 import kotlinx.android.synthetic.main.layout_lista_produtos.view.*
 
+
 class ProdutosAdapter(var ListaProdutos: ArrayList<Produto>): RecyclerView.Adapter<ProdutosAdapter.ProdutoViewHolder>(){
+
+    class ProdutoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        fun bind(produto: Produto){
+            itemView.txt_codigo.text = produto.nomeProduto
+            itemView.txt_produto.text = produto.codigo.toString()
+            itemView.valor_produto.text = produto.valor.toString()
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProdutoViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.layout_lista_produtos,parent,false)
@@ -22,15 +31,6 @@ class ProdutosAdapter(var ListaProdutos: ArrayList<Produto>): RecyclerView.Adapt
 
     override fun getItemCount(): Int {
        return ListaProdutos.size
-    }
-
-
-    class ProdutoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind(produto: Produto){
-            itemView.txt_codigo.text = produto.nomeProduto
-            itemView.txt_produto.text = produto.codigo.toString()
-            itemView.valor_produto.text = produto.valor.toString()
-        }
     }
 
 }
